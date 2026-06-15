@@ -22,21 +22,21 @@
 
 ### 是什么
 
-`CCF Figure` 是一个专门为 AI / 计算机科学领域的研究人员设计，帮助你将论文内容转化为**顶会顶刊级科研配图**。
+`CCF Figure` 是一个专门为 AI / 计算机科学领域的研究人员设计，帮助你将论文内容转化为**顶会顶刊级科研配图**的工具。
 
 核心理念来自「深度之眼」2026年6月11日发布的文章《科研绘图提示词第二弹》：  
-**先判断论文类型，再选择最合适的图示结构**，而不是千篇一律地套用"左输入-中模型-右输出"三段式模板。
+**先判断论文类型，再选择最合适的图示结构**，而不是千篇一律地套用“左输入-中模型-右输出”三段式模板。
 
 ### 支持平台
 
 | 平台 | 使用方式 |
 |-----|---------|
 | **Claude** | 自动加载 Skill，直接对话即可生成图像 |
-| **Codex** | 自动加载 Skill，生成完整提示词后调用 GPT Image 2 
+| **Codex** | 自动加载 Skill，生成完整提示词后调用 GPT Image 2 |
 
 ### 功能特性
 
-- **自动分类**：识别 7 种论文类型（方法/机制/评测/规律/机器人/交叉/综述）
+- **自动分类**：识别 7 种论文类型（方法 / 机制 / 评测 / 规律 / 机器人 / 交叉 / 综述）
 - **结构自选**：从 11 种图示结构中自动匹配最优布局
 - **完整提示词**：内置中英文双语提示词模板，可直接复制使用
 - **五大翻车预防**：内置 Self-Check 清单，避免 AI 绘图的常见错误
@@ -60,153 +60,17 @@
 |-----|------|
 | 背景 | 纯白 `#FFFFFF` 或极浅灰 `#F5F5F5` |
 | 风格 | 二维扁平化矢量 — 禁止 3D 透视 / 霓虹渐变 / 装饰纹理 |
-| 配色 | 功能性配色；最多 3 个色彩群组；强调色限橙/青绿/深蓝 |
-| 文字 | 水平排布；最多 2 种字号；中文标签+英文专有名词 |
+| 配色 | 功能性配色；最多 3 个色彩群组；强调色限橙 / 青绿 / 深蓝 |
+| 文字 | 水平排布；最多 2 种字号；中文标签 + 英文专有名词 |
 | 目标刊会 | NeurIPS, ICML, ICLR, CVPR, ACL, Nature MI, IEEE TPAMI 等 |
 
 ### 安装方式
 
 ```bash
 # 方式一：克隆到用户级 skills 目录（推荐，所有项目通用）
-git clone https://github.com/your-username/scientific-figure-generator \
-  ~/.scientific-figure-generator
+git clone https://github.com/your-username/CCF-Figure \
+  ~/.ccf-figure
 
 # 方式二：克隆到项目级 skills 目录（仅当前项目可用）
-git clone https://github.com/your-username/scientific-figure-generator \
-  .scientific-figure-generator
-```
-
-### 使用方式
-
-在 Claude 或 Codex中直接说：
-
-```
-帮我为这篇论文生成科研配图：
-[发送你的论文原文或粘贴你的论文标题 + 摘要 + 方法部分]
-```
-
-Skill 会自动：
-1. 判断论文类型
-2. 选择最合适的图示结构
-3. 组装完整提示词
-4. 生成图像（Claude）或输出提示词（Codex）
-
-### 文件结构
-
-```
-scientific-figure-generator/
-├── SKILL.md                   ← 主工作流（Skill 入口）
-├── references/
-│   ├── prompt-template.md     ← 完整提示词模板（中英双语，可直接复制）
-│   └── figure-types.md       ← 11种图示类型规范 + 五大翻车问题
-└── README.md                  ← 本文件
-```
-
-</details>
-
----
-
-<!-- English version -->
-## English Documentation
-
-<details>
-<summary>Click to expand / collapse</summary>
-
-### What It Is
-
-`scientific-figure-generator` is a Skill for researchers in AI and computer science.
-It transforms paper content into **publication-quality scientific figures** meeting the visual
-standards of top conferences and journals.
-
-The core methodology comes from Deep Eye's June 2026 article:  
-**Classify the paper type first, then select the optimal diagram structure** — rather than
-mechanically applying a generic "left-input → center-model → right-output" template.
-
-### Supported Platforms
-
-| Platform | How it works |
-|----------|-------------|
-| **Claude** | Load the Skill, chat to generate images directly |
-| **Codex** | Load the Skill, get a complete prompt to use with GPT Image 2|
-
-### Features
-
-- **Auto-classification**: Identifies 7 paper types (method / mechanism / benchmark / scaling / robot / interdisciplinary / survey)
-- **Structure auto-selection**: Matches from 11 diagram structures automatically
-- **Complete prompt library**: Bilingual (Chinese/English) prompt templates, copy-paste ready
-- **5-failure-mode prevention**: Built-in self-check checklist to avoid common AI figure mistakes
-- **Iteration protocol**: Standardized revision workflow, up to 3 rounds
-
-### Paper Type × Diagram Structure
-
-| Paper Type | Recommended Diagram |
-|-----------|---------------------|
-| A · Method | Method Overview / Model Architecture |
-| B · Mechanism / Analysis | Mechanism Zoom-in / Contrastive Diagram |
-| C · Benchmark / Evaluation | Evaluation Pipeline / Data Construction Pipeline |
-| D · Scaling Law / Empirical | Trend Panel / Experimental Matrix |
-| E · Robot / Embodied AI | **Closed-Loop Feedback Diagram** |
-| F · Interdisciplinary / AI for X | Cross-domain Application Framework |
-| G · Survey / Position | Taxonomy Tree / Timeline / Comparison Matrix |
-
-### Visual Specification
-
-| Property | Rule |
-|----------|------|
-| Background | Pure white `#FFFFFF` or very light gray `#F5F5F5` |
-| Style | 2D flat vector — NO 3D, NO neon gradients, NO decorative textures |
-| Color | Functional only; max 3 color groups; accent: orange / cyan / deep blue |
-| Typography | Horizontal only; max 2 font sizes; label in Chinese, proper nouns in English |
-| Target venues | NeurIPS, ICML, ICLR, CVPR, ACL, Nature MI, IEEE TPAMI, etc. |
-
-### Installation
-
-```bash
-# Option 1: User-level (available across all projects — recommended)
-git clone https://github.com/your-username/scientific-figure-generator \
-  ~/.scientific-figure-generator
-
-# Option 2: Project-level (available in current project only)
-git clone https://github.com/your-username/scientific-figure-generator \
-  ./scientific-figure-generator
-```
-
-### Usage
-
-In Claude or Codex, simply say:
-
-```
-Generate a scientific figure for this paper:
-[Paste your paper or paper title + abstract + method section]
-```
-
-The Skill will automatically:
-1. Classify the paper type
-2. Select the most appropriate diagram structure
-3. Assemble the complete image generation prompt
-4. Generate the image (Claude) or output the prompt for you to use (Codex)
-
-### File Structure
-
-```
-scientific-figure-generator/
-├── SKILL.md                   ← Main workflow (Skill entry point)
-├── references/
-│   ├── prompt-template.md     ← Full prompt template (bilingual, copy-paste ready)
-│   └── figure-types.md       ← 11 diagram type specs + 5 failure modes
-└── README.md                  ← This file
-```
-
-</details>
-
----
-
-## License
-
-MIT License — feel free to use, modify, and distribute with attribution.
-
----
-
-<p align="center">
-  Made with ❤️ for the AI research community · 深度之眼 Deepshare
-</p>
+git clone https://github.com/your-username/CCF-Figure \
+  ./CCF-Figure
