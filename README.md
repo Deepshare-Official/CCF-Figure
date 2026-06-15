@@ -1,4 +1,4 @@
-# scientific-figure-generator
+# CCF Figure
 
 <p align="center">
   <img src="https://img.shields.io/badge/Platform-Claude%20%7C%20Codex-blue?style=flat-square" />
