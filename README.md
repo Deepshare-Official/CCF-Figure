@@ -69,8 +69,144 @@
 ```bash
 # 方式一：克隆到用户级 skills 目录（推荐，所有项目通用）
 git clone https://github.com/your-username/CCF-Figure \
-  ~/.ccf-figure
+  ~/.CCF-Figure
 
 # 方式二：克隆到项目级 skills 目录（仅当前项目可用）
 git clone https://github.com/your-username/CCF-Figure \
   ./CCF-Figure
+```
+
+### 使用方式
+
+在 Claude 或 Codex 中直接说：
+
+```text
+帮我为这篇论文生成科研配图：
+[发送你的论文原文，或粘贴论文标题 + 摘要 + 方法部分]
+```
+
+`CCF Figure` 会自动：
+
+1. 判断论文类型
+2. 选择最合适的图示结构
+3. 组装完整提示词
+4. 生成图像（Claude）或输出提示词（Codex）
+
+### 文件结构
+
+```text
+CCF-Figure/
+├── SKILL.md                   ← 主工作流（Skill 入口）
+├── references/
+│   ├── prompt-template.md     ← 完整提示词模板（中英双语，可直接复制）
+│   └── figure-types.md       ← 11 种图示类型规范 + 五大翻车问题
+└── README.md                  ← 本文件
+```
+
+</details>
+
+---
+
+<!-- English version -->
+## English Documentation
+
+<details>
+<summary>Click to expand / collapse</summary>
+
+### What It Is
+
+`CCF Figure` is a Skill for researchers in AI and computer science.
+It transforms paper content into **publication-quality scientific figures** meeting the visual standards of top conferences and journals.
+
+The core methodology comes from DeepShare’s June 2026 article:  
+**Classify the paper type first, then select the optimal diagram structure** — rather than mechanically applying a generic “left-input → center-model → right-output” template.
+
+### Supported Platforms
+
+| Platform | How it works |
+|----------|-------------|
+| **Claude** | Load the Skill, chat to generate images directly |
+| **Codex** | Load the Skill, get a complete prompt to use with GPT Image 2 |
+
+### Features
+
+- **Auto-classification**: Identifies 7 paper types — method, mechanism, benchmark, scaling, robotics, interdisciplinary, and survey
+- **Structure auto-selection**: Automatically matches the best layout from 11 diagram structures
+- **Complete prompt library**: Bilingual Chinese / English prompt templates, ready to copy and use
+- **5-failure-mode prevention**: Built-in self-check checklist to avoid common AI figure mistakes
+- **Iteration protocol**: Standardized revision workflow, up to 3 rounds
+
+### Paper Type × Diagram Structure
+
+| Paper Type | Recommended Diagram |
+|-----------|---------------------|
+| A · Method | Method Overview / Model Architecture |
+| B · Mechanism / Analysis | Mechanism Zoom-in / Contrastive Diagram |
+| C · Benchmark / Evaluation | Evaluation Pipeline / Data Construction Pipeline |
+| D · Scaling Law / Empirical | Trend Panel / Experimental Matrix |
+| E · Robot / Embodied AI | **Closed-Loop Feedback Diagram** |
+| F · Interdisciplinary / AI for X | Cross-domain Application Framework |
+| G · Survey / Position | Taxonomy Tree / Timeline / Comparison Matrix |
+
+### Visual Specification
+
+| Property | Rule |
+|----------|------|
+| Background | Pure white `#FFFFFF` or very light gray `#F5F5F5` |
+| Style | 2D flat vector — NO 3D, NO neon gradients, NO decorative textures |
+| Color | Functional only; max 3 color groups; accent colors limited to orange, cyan-green, and deep blue |
+| Typography | Horizontal only; max 2 font sizes; Chinese labels + English proper nouns |
+| Target venues | NeurIPS, ICML, ICLR, CVPR, ACL, Nature MI, IEEE TPAMI, etc. |
+
+### Installation
+
+```bash
+# Option 1: User-level, available across all projects — recommended
+git clone https://github.com/your-username/CCF-Figure \
+  ~/.CCF-Figure
+
+# Option 2: Project-level, available in the current project only
+git clone https://github.com/your-username/CCF-Figure \
+  ./CCF-Figure
+```
+
+### Usage
+
+In Claude or Codex, simply say:
+
+```text
+Generate a scientific figure for this paper:
+[Paste your paper, or paste the paper title + abstract + method section]
+```
+
+`CCF Figure` will automatically:
+
+1. Classify the paper type
+2. Select the most appropriate diagram structure
+3. Assemble the complete image generation prompt
+4. Generate the image in Claude, or output the prompt for Codex
+
+### File Structure
+
+```text
+CCF-Figure/
+├── SKILL.md                   ← Main workflow / Skill entry point
+├── references/
+│   ├── prompt-template.md     ← Full prompt template, bilingual and copy-paste ready
+│   └── figure-types.md       ← 11 diagram type specs + 5 failure modes
+└── README.md                  ← This file
+```
+
+</details>
+
+---
+
+## License
+
+MIT License — feel free to use, modify, and distribute with attribution.
+
+---
+
+<p align="center">
+  Made with ❤️ for the AI research community · 深度之眼 Deepshare
+</p>
