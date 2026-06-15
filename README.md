@@ -31,8 +31,8 @@
 
 | 平台 | 使用方式 |
 |-----|---------|
-| **Claude** | 自动加载 Skill，直接对话即可生成图像 |
-| **Codex** | 自动加载 Skill，生成完整提示词后调用 GPT Image 2 |
+| **Claude Code** | 安装到 skills 目录后，在项目中自动调用 |
+| **Codex** | 安装到 skills 目录后，生成完整提示词并辅助调用图像模型 |
 
 ### 功能特性
 
@@ -47,12 +47,12 @@
 | 论文类型 | 推荐图示结构 |
 |--------|------------|
 | A · 方法类 | 方法总览图 / 模型架构图 |
-| B · 机制/分析类 | 机制示意图（局部放大）/ 对比式方法图 |
-| C · 评测/基准类 | 评测流程图 / 数据构建流程图 |
+| B · 机制 / 分析类 | 机制示意图（局部放大）/ 对比式方法图 |
+| C · 评测 / 基准类 | 评测流程图 / 数据构建流程图 |
 | D · 规律发现类 | 实验规律总结图 / 实验矩阵图 |
-| E · 机器人/具身智能 | **闭环反馈图**（感知→规划→执行→反馈） |
+| E · 机器人 / 具身智能 | **闭环反馈图**（感知 → 规划 → 执行 → 反馈） |
 | F · 交叉方向 | 跨学科应用框架图 |
-| G · 综述/位置 | 分类树 / 时间线 / 对比矩阵 |
+| G · 综述 / 位置 | 分类树 / 时间线 / 对比矩阵 |
 
 ### 视觉规范摘要
 
@@ -66,19 +66,33 @@
 
 ### 安装方式
 
-```bash
-# 方式一：克隆到用户级 skills 目录（推荐，所有项目通用）
-git clone https://github.com/your-username/CCF-Figure \
-  ~/.CCF-Figure
+#### Claude Code
 
-# 方式二：克隆到项目级 skills 目录（仅当前项目可用）
-git clone https://github.com/your-username/CCF-Figure \
-  ./CCF-Figure
+```bash
+# 方式一：安装到 Claude Code 个人级 skills 目录（推荐，所有项目通用）
+git clone https://github.com/Deepshare-Official/CCF-Figure \
+  ~/.claude/skills/ccf-figure
+
+# 方式二：安装到当前项目的 Claude Code skills 目录（仅当前项目可用）
+git clone https://github.com/Deepshare-Official/CCF-Figure \
+  .claude/skills/ccf-figure
+```
+
+#### Codex
+
+```bash
+# 方式一：安装到 Codex 个人级 skills 目录（推荐，所有项目通用）
+git clone https://github.com/Deepshare-Official/CCF-Figure \
+  ~/.agents/skills/ccf-figure
+
+# 方式二：安装到当前项目的 Codex skills 目录（仅当前项目可用）
+git clone https://github.com/Deepshare-Official/CCF-Figure \
+  .agents/skills/ccf-figure
 ```
 
 ### 使用方式
 
-在 Claude 或 Codex 中直接说：
+安装完成后，在 Claude Code 或 Codex 中直接说：
 
 ```text
 帮我为这篇论文生成科研配图：
@@ -90,7 +104,7 @@ git clone https://github.com/your-username/CCF-Figure \
 1. 判断论文类型
 2. 选择最合适的图示结构
 3. 组装完整提示词
-4. 生成图像（Claude）或输出提示词（Codex）
+4. 生成图像或输出可直接用于图像模型的完整提示词
 
 ### 文件结构
 
@@ -101,6 +115,19 @@ CCF-Figure/
 │   ├── prompt-template.md     ← 完整提示词模板（中英双语，可直接复制）
 │   └── figure-types.md       ← 11 种图示类型规范 + 五大翻车问题
 └── README.md                  ← 本文件
+```
+
+### 建议的 SKILL.md 头部配置
+
+为了让 Claude Code 和 Codex 更稳定识别，建议 `SKILL.md` 开头使用如下 metadata：
+
+```markdown
+---
+name: ccf-figure
+description: Generate publication-ready scientific figures for AI and computer science papers. Use when the user provides a paper title, abstract, method section, or full paper and wants a top-conference-style research diagram.
+---
+
+# CCF Figure
 ```
 
 </details>
@@ -116,7 +143,8 @@ CCF-Figure/
 ### What It Is
 
 `CCF Figure` is a Skill for researchers in AI and computer science.
-It transforms paper content into **publication-quality scientific figures** meeting the visual standards of top conferences and journals.
+
+It transforms paper content into **publication-quality scientific figures** that meet the visual standards of top conferences and journals.
 
 The core methodology comes from DeepShare’s June 2026 article:  
 **Classify the paper type first, then select the optimal diagram structure** — rather than mechanically applying a generic “left-input → center-model → right-output” template.
@@ -125,8 +153,8 @@ The core methodology comes from DeepShare’s June 2026 article:
 
 | Platform | How it works |
 |----------|-------------|
-| **Claude** | Load the Skill, chat to generate images directly |
-| **Codex** | Load the Skill, get a complete prompt to use with GPT Image 2 |
+| **Claude Code** | Install it into the skills directory, then invoke it naturally in your project |
+| **Codex** | Install it into the skills directory, then use it to assemble complete scientific-figure prompts |
 
 ### Features
 
@@ -160,19 +188,33 @@ The core methodology comes from DeepShare’s June 2026 article:
 
 ### Installation
 
-```bash
-# Option 1: User-level, available across all projects — recommended
-git clone https://github.com/your-username/CCF-Figure \
-  ~/.CCF-Figure
+#### Claude Code
 
-# Option 2: Project-level, available in the current project only
-git clone https://github.com/your-username/CCF-Figure \
-  ./CCF-Figure
+```bash
+# Option 1: Install as a user-level Claude Code skill, available across projects
+git clone https://github.com/Deepshare-Official/CCF-Figure \
+  ~/.claude/skills/ccf-figure
+
+# Option 2: Install as a project-level Claude Code skill, available only in the current project
+git clone https://github.com/Deepshare-Official/CCF-Figure \
+  .claude/skills/ccf-figure
+```
+
+#### Codex
+
+```bash
+# Option 1: Install as a user-level Codex skill, available across projects
+git clone https://github.com/Deepshare-Official/CCF-Figure \
+  ~/.agents/skills/ccf-figure
+
+# Option 2: Install as a project-level Codex skill, available only in the current project
+git clone https://github.com/Deepshare-Official/CCF-Figure \
+  .agents/skills/ccf-figure
 ```
 
 ### Usage
 
-In Claude or Codex, simply say:
+After installation, simply say in Claude Code or Codex:
 
 ```text
 Generate a scientific figure for this paper:
@@ -183,8 +225,8 @@ Generate a scientific figure for this paper:
 
 1. Classify the paper type
 2. Select the most appropriate diagram structure
-3. Assemble the complete image generation prompt
-4. Generate the image in Claude, or output the prompt for Codex
+3. Assemble the complete image-generation prompt
+4. Generate the figure or output a complete prompt ready for an image model
 
 ### File Structure
 
@@ -195,6 +237,19 @@ CCF-Figure/
 │   ├── prompt-template.md     ← Full prompt template, bilingual and copy-paste ready
 │   └── figure-types.md       ← 11 diagram type specs + 5 failure modes
 └── README.md                  ← This file
+```
+
+### Recommended SKILL.md Metadata
+
+For better compatibility with Claude Code and Codex, it is recommended to start `SKILL.md` with the following metadata:
+
+```markdown
+---
+name: ccf-figure
+description: Generate publication-ready scientific figures for AI and computer science papers. Use when the user provides a paper title, abstract, method section, or full paper and wants a top-conference-style research diagram.
+---
+
+# CCF Figure
 ```
 
 </details>
